@@ -1,0 +1,27 @@
+Hypothesen, Methoden:
+	Communities of different political aspects
+		community detection
+	Users who only answer, who only ask
+		cluster by q/a ratio
+	Experts on certain aspects (dictated by own political opinion?)
+		normalize tags, cluster by tags
+	Most users sign up to ask/answer one question, few make up "the community"
+		Plot amount of users that has x answers/questions
+		degree distribution
+	Wenn nutzer aus einer community in einer anderen community antwortet, wird er downgevotet
+	Nutzer finden, die Tag am meisten benutzen, Label Propagation
+
+Interessant zu wissen:
+	Durchmesser des graphen
+	Zeitliche verteilung der posts
+	Hot topics over time
+	(Möglichkeit: Location, aber aufwendig da kein einheitliches format)
+
+Ausprobieren:
+	Tags korrelieren
+	an Kanten als Attribut: Tags, upvotes, downvotes
+	Extreme Nutzer an ihren offensive-Votes erkennen
+	Low-quality Nutzer an ihren deletion/close-Votes oder an Edits ihrer Posts erkennen
+	Per Hand ein paar Dutzend Labels erstellen, label propagation
+
+	Anstelle von Weight der Antworten, die ich bekommen habe: eine Antwort hat Gewicht 1, eine Frage hat Gewicht total_answers / total_questions
