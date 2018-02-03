@@ -2,15 +2,15 @@ import networkx as nx
 
 
 # source: https://stackoverflow.com/questions/43541376/how-to-draw-communities-with-networkx/43541777#43541777
-def community_layout(g, partition, distance):
-    pos_communities = _position_communities(g, partition, scale=3.)
+def community_layout(g, partition, community_distance=7):
+    pos_communities = _position_communities(g, partition, k=3, scale=community_distance)
 
-    pos_nodes = _position_nodes(g, partition, scale=1.)
+    pos_nodes = _position_nodes(g, partition, scale=1)
 
     # combine positions
     pos = dict()
     for node in g.nodes():
-        pos[node] = distance * pos_communities[node] + pos_nodes[node]
+        pos[node] = pos_communities[node] + pos_nodes[node]
 
     return pos
 
