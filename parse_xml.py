@@ -29,9 +29,10 @@ edges = []
 for row in rows:
     if row.get("parentid", None):
         author = row.get("owneruserid", None) or row["ownerdisplayname"]
-        parent_id = row["parentid"]
-        parent_author = posts[parent_id]
-        edges.append([author, parent_author, *tags[parent_id]])
+        question_id = row["parentid"]
+        score = row["score"]
+        parent_author = posts[question_id]
+        edges.append([author, parent_author, question_id, score, *tags[question_id]])
 
 with open('nodes.csv', 'w') as f:
     w = csv.writer(f)
