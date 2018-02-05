@@ -18,14 +18,18 @@ rows = soup.posts.findAll("row")
 authors = set()
 posts = {}
 tags = {}
+scores = {}
 for row in rows:
     author = row.get("owneruserid", None) or row["ownerdisplayname"]
     authors.add(author)
     pid = row["id"]
     tags[pid] = parsetags(row.get("tags", ""))
     posts[pid] = author
+    scores[pid] = row.get("score", 0)
 
 edges = []
+questions = set()
+
 for row in rows:
     if row.get("parentid", None):
         author = row.get("owneruserid", None) or row["ownerdisplayname"]
@@ -33,6 +37,7 @@ for row in rows:
         score = row["score"]
         parent_author = posts[question_id]
         edges.append([author, parent_author, question_id, score, *tags[question_id]])
+        questions.add(question_id)
 
 with open('nodes.csv', 'w') as f:
     w = csv.writer(f)
@@ -41,3 +46,7 @@ with open('nodes.csv', 'w') as f:
 with open('edges.csv', 'w') as f:
     w = csv.writer(f)
     w.writerows(edges)
+with open('questions.csv', 'w') as f:
+    w = csv.writer(f)
+    for pid in questions:
+        w.writerow([pid, scores[pid]])
